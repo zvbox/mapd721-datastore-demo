@@ -71,6 +71,8 @@ dependencies {
     implementation("com.google.protobuf:protobuf-javalite:3.21.11")
     implementation ( "com.google.protobuf:protobuf-kotlin-lite:3.23.4")
 
+    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
+    //implementation("androidx.core:core:2.2.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
