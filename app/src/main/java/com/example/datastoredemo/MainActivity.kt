@@ -42,6 +42,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.Manifest
+import androidx.compose.material3.Divider
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.OutlinedButton
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalComposeUiApi::class)
@@ -111,7 +114,7 @@ private fun Main() {
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Button(
+        ElevatedButton(
             onClick = {
                 CoroutineScope(Dispatchers.IO).launch {
                     store.saveToken(tokenValue.value.text)
@@ -141,6 +144,15 @@ private fun Main() {
         ) {
             Text(text = "Show Expandable notifications")
         }
+        Spacer(modifier = Modifier.height(10.dp))
+        OutlinedButton(
+            onClick = {
+                makePlantReminderNotification("My notification with intent", context)
+            }
+        ) {
+            Text(text = "Show Notification with Intent")
+        }
+
 
     }
 }
