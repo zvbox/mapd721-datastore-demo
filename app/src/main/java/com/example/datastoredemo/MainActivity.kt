@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,11 +27,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.core.app.NotificationCompat
 import com.example.datastoredemo.ui.theme.DataStoreDemoTheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
@@ -42,9 +39,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.Manifest
-import androidx.compose.material3.Divider
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.ui.text.style.TextAlign
+import com.example.datastoredemo.worker.WorkManagerRunner
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalComposeUiApi::class)
@@ -127,7 +128,7 @@ private fun Main() {
         ) {
             Text(text = "Update Token")
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(50.dp))
         Button(
             onClick = {
                 waterNotificationService.showBasicNotification()
@@ -151,6 +152,17 @@ private fun Main() {
             }
         ) {
             Text(text = "Show Notification with Intent")
+        }
+        Spacer(modifier = Modifier.height(50.dp))
+        Text(text = "Use WorkManager to run OneTimeWorkRequest with delay 5 sec",
+            textAlign = TextAlign.Center, modifier = Modifier.width(300.dp))
+        FilledTonalButton(
+            onClick = {
+                val workManagerRunner = WorkManagerRunner(context)
+                workManagerRunner.scheduleReminder(5, TimeUnit.SECONDS, "Cactus")
+            }
+        ) {
+            Text(text = "Run OneTimeWorkRequest")
         }
 
 

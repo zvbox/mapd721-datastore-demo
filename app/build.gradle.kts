@@ -50,29 +50,12 @@ android {
         }
     }
 }
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.23.4"
-    }
-    generateProtoTasks {
-        all().forEach { task ->
-            task.builtins {
-                register("kotlin") {
-                    option("lite")
-                }
-            }
-        }
-    }
-}
 dependencies {
 
-    // Proto datastore
     implementation("androidx.datastore:datastore:1.0.0")
-    implementation("com.google.protobuf:protobuf-javalite:3.21.11")
     implementation ( "com.google.protobuf:protobuf-kotlin-lite:3.23.4")
 
     implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
-    //implementation("androidx.core:core:2.2.0")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.8.2")
@@ -84,6 +67,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
     implementation ("androidx.datastore:datastore-preferences-rxjava2:1.0.0")
     implementation ("androidx.datastore:datastore-preferences-rxjava3:1.0.0")
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
