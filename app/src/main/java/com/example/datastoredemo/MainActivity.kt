@@ -39,6 +39,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.Manifest
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FilledTonalButton
@@ -138,13 +139,23 @@ private fun Main() {
         }
 
         Spacer(modifier = Modifier.height(10.dp))
-        Button(
-            onClick = {
-                waterNotificationService.showExpandableNotification()
+        Row {
+            Button(
+                onClick = {
+                    waterNotificationService.showExpandableNotification()
+                }
+            ) {
+                Text(text = "Show Expandable 1")
             }
-        ) {
-            Text(text = "Show Expandable notifications")
+            Button(
+                onClick = {
+                    waterNotificationService.showExpandableNotificationWithText()
+                }
+            ) {
+                Text(text = "Show Expandable 2")
+            }
         }
+
         Spacer(modifier = Modifier.height(10.dp))
         OutlinedButton(
             onClick = {

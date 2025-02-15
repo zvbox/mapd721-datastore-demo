@@ -26,6 +26,22 @@ class WaterNotificationService(
         )
     }
 
+    fun showExpandableNotificationWithText(){
+        val notification=NotificationCompat.Builder(context,"water_notification")
+            .setContentTitle("Water Reminder")
+            .setContentText("Time to drink a glass of water")
+            .setSmallIcon(com.google.accompanist.permissions.R.drawable.ic_call_answer)
+            .setPriority(NotificationManager.IMPORTANCE_HIGH)
+            .setAutoCancel(true)
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText("Much longer text that cannot fit one line... " +
+                            "Much longer text that cannot fit one line... " +
+                            "Much longer text that cannot fit one line... ")
+            )
+            .build()
+        notificationManager.notify(Random.nextInt(),notification)
+    }
     fun showExpandableNotification(){
         val notification=NotificationCompat.Builder(context,"water_notification")
             .setContentTitle("Water Reminder")
@@ -37,9 +53,7 @@ class WaterNotificationService(
                 NotificationCompat
                     .BigPictureStyle()
                     .bigPicture(
-                        context.bitmapFromResource(
-                            com.google.accompanist.permissions.R.drawable.notification_template_icon_bg
-                        )
+                        context.bitmapFromResource(R.drawable.dog)
                     )
             )
             .build()
